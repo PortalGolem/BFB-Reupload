@@ -1,0 +1,1 @@
+TileSet_Floor.fbx is the file is the object used for trims 1-5. They all have they same geometry, just slightly different UV maps.
