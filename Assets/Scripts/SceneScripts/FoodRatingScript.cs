@@ -14,10 +14,14 @@ public class FoodRatingScript : MonoBehaviour
     {
         int score = 0;
         List<FoodScript> foodScripts = plate.attachedFood;
-        List<int> foodsChecked =  new List<int>();
+        List<int> foodsChecked = new List<int>();
         List<int> foodsCheckedGivenScore = new List<int>();
         for (int i = 0; i < foodScripts.Count; i++)
         {
+            if (foodToBeServed.Count <= 0)
+            {
+                return 0;
+            }
             if (foodScripts[i].foodType == foodToBeServed[0].foods[i])
             {
                 if (foodsChecked.Contains(i))
@@ -33,22 +37,24 @@ public class FoodRatingScript : MonoBehaviour
                 {
                     if (foodToBeServed[0].effects[n] == 0)
                     {
-                        if (foodScripts[i].effectIntensity[n] != 0) 
+                        if (foodScripts[i].effectIntensity[n] != 0)
                         {
                             ingreedientScore -= 1;
-                        } else
+                        }
+                        else
                         {
                             ingreedientsNotUsed++;
                         }
                         continue;
                     }
-                    ingreedientScore += AccuracyCurve.Evaluate(Mathf.Clamp(foodScripts[i].effectIntensity[n]/foodToBeServed[0].effects[n], 0f, 2f));
+                    ingreedientScore += AccuracyCurve.Evaluate(Mathf.Clamp(foodScripts[i].effectIntensity[n] / foodToBeServed[0].effects[n], 0f, 2f));
                 }
                 ingreedientScore /= foodScripts[i].effectIntensity.Length - ingreedientsNotUsed;
                 ingreedientScore = Mathf.Max(0f, ingreedientScore);
                 score += (int)Mathf.Floor(ingreedientScore * 100);
                 foodsCheckedGivenScore.Add((int)Mathf.Floor(ingreedientScore * 50));
-            } else if (foodToBeServed[0].foods.IndexOf(foodScripts[i].foodType) != -1)
+            }
+            else if (foodToBeServed[0].foods.IndexOf(foodScripts[i].foodType) != -1)
             {
                 int unservedFood = -1;
                 for (int n = 0; n < foodToBeServed[0].foods.Count; n++)
@@ -68,17 +74,17 @@ public class FoodRatingScript : MonoBehaviour
                     {
                         //A problem with this score calculation is that you have to be more acurate for smaller intesities of the effect resulting in a reverse difficulty curve as the game progresses.
                         //We could either change the curves to account for this or change this calculation method
-                        ingreedientScore += AccuracyCurve.Evaluate(Mathf.Clamp(foodScripts[i].effectIntensity[n]/foodToBeServed[0].effects[n], 0f, 2f));
+                        ingreedientScore += AccuracyCurve.Evaluate(Mathf.Clamp(foodScripts[i].effectIntensity[n] / foodToBeServed[0].effects[n], 0f, 2f));
                     }
                     ingreedientScore /= foodScripts[i].effectIntensity.Length;
-                    
+
                     score += (int)Mathf.Floor(ingreedientScore * 50);
                 }
-                
+
             }
         }
         Debug.Log(score);
-        score = 10 * (score/Mathf.Max(foodsChecked.Count, foodToBeServed[0].foods.Count));
+        score = 10 * (score / Mathf.Max(foodsChecked.Count, foodToBeServed[0].foods.Count));
         foodToBeServed.RemoveAt(0);
         Destroy(plate.gameObject);
         return score;
@@ -87,9 +93,9 @@ public class FoodRatingScript : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         PlateScript collisionPlate = collision.gameObject.GetComponent<PlateScript>();
-        
+
         if (!collisionPlate || collisionPlate.attachedFood.Count == 0) return;
-        
+
         totalScore += evaluateScore(collisionPlate);
 
         scoreDisplay.text = totalScore.ToString();

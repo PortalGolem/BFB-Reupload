@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30e0924e1adaa84892e19ca8a8cbd71, type: 3}
+  m_Name: TerraTest
+  m_EditorClassIdentifier: Assembly-CSharp::EventSequence
+  events:
+  - isDialogue: 1
+    durationSeconds: 125
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    subtitles:
+      text:
+      - Hello there and welcome to my Terra test project.
+      - So I've worked one a few things this week.
+      - The two main ones are
+      - the subtitles and the receipt system
+      - there's also a kitchen manager
+      - which you can't see and is not currently implemented
+      - but I did program most of it.
+      - so I'll start with the subtitles
+      - you can see them now on the bottom of the screen
+      - and if you continue forwards
+      - there's a little counter
+      - and a receipt has printed out of the
+      - receipt printer at this point
+      - you can interact with it
+      - and if you do it'll show you an order
+      - that's everything I was able to implement this week.
+      - Unfortunately I didn't have as much time as I wanted.
+      - However, there's a bunch of stuff I implemented before this.
+      - We have the pathfinding system
+      - which if you look underneath you
+      - you can see the monster moving around
+      - the IK system that that monster is using to move around
+      - 'and I also programmed a '
+      - Burger, like eating thing
+      - Er, um not eating thing coo- building thing
+      - '*uninteligable*'
+      - you can follow the instructions on the receipt
+      - to make an order
+      - using the food elements behind you
+      - I also programmed the inventory system
+      - and if you press TAB you can open your inventory
+      - you only have two slots
+      - you can also scroll to choose which item is in your main slot
+      - then if you place items (on a plate) on the counter
+      - next to the receipt printer they will be served
+      - and the number will tell you how many points you got
+      - I plan on adding a lot more interactability this week
+      - Including a
+      - Including a bunch of animations which my friend is working on
+      - oh that's another thing
+      - all  the models here are made by my friend
+      - then
+      - so I plan on
+      - implementing a bunch of animations
+      - some sounds and more cooking stuff
+      - That's about it thanks for checking it out
+      textTimings:
+      - 0
+      - 3
+      - 7
+      - 9
+      - 12
+      - 15
+      - 18
+      - 21
+      - 23
+      - 25
+      - 28
+      - 29
+      - 32
+      - 34
+      - 36
+      - 39
+      - 42
+      - 44
+      - 47
+      - 50
+      - 52
+      - 54
+      - 57
+      - 60
+      - 63
+      - 67
+      - 71
+      - 73
+      - 76
+      - 77
+      - 79
+      - 82
+      - 83
+      - 87
+      - 91
+      - 93
+      - 96
+      - 102
+      - 106
+      - 110
+      - 112
+      - 114
+      - 116
+      - 117
+      - 120
+      - 123
+    audio: {fileID: 8300000, guid: a38a16a48a58e91a1a9036091be98c7c, type: 3}
