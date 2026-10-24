@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 
 public class KitchenManager : MonoBehaviour

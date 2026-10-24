@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class NoteDisplay : MonoBehaviour
 {
-    [SerializeField] RectTransform note;
     [SerializeField] playerControllerScript playerController;
 
     bool exited = false;
@@ -32,11 +31,14 @@ public class NoteDisplay : MonoBehaviour
 
     public RectTransform DisplayNote(RectTransform note)
     {
+        Debug.Log("CreatedNote!");
         currentNote = Instantiate(note, transform.GetChild(0));
         currentNote.gameObject.SetActive(true);
         currentAnimator.SetTrigger("StartAnimation");
+        currentAnimator.ResetTrigger("Exit");
         playerController.enabled = false;
         Cursor.lockState = CursorLockMode.None;
+        exited = false;
         return currentNote;
     }
 

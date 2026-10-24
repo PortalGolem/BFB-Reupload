@@ -5,7 +5,7 @@ public class Reciept : Interactable
 {
     public static int NotePosition = 0;
 
-    bool hasInteracted;
+    bool hasInteracted = false;
 
     [SerializeField] Vector3 NoteDistance;
     [SerializeField] Vector3 NoteStartPosition;
@@ -20,6 +20,7 @@ public class Reciept : Interactable
         {
             hasInteracted = true;
             transform.SetPositionAndRotation(NoteStartPosition + NoteDistance * NotePosition, HangingRotation);
+            NotePosition++;
         }
 
         RectTransform noteInstance = NoteDisplay.instance.DisplayNote(note);

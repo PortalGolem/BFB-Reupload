@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class ReceiptPrinterScript : MonoBehaviour
 {
     [SerializeField] RectTransform note;
     [SerializeField] GameObject noteGameobject;
-    List<string> notesToPrint = new List<String>();
+    List<string> notesToPrint = new List<string>();
     bool isReceiptWaiting;
 
     public void printReceipt(string noteToPrint)
