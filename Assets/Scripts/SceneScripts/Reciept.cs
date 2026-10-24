@@ -10,7 +10,8 @@ public class Reciept : Interactable
     [SerializeField] Vector3 NoteDistance;
     [SerializeField] Vector3 NoteStartPosition;
     [SerializeField] Quaternion HangingRotation;
-    [SerializeField] RectTransform note;
+    public RectTransform note;
+    public ReceiptPrinterScript receiptPrinter;
     public string text;
 
     public override bool Interact()
@@ -23,6 +24,8 @@ public class Reciept : Interactable
 
         RectTransform noteInstance = NoteDisplay.instance.DisplayNote(note);
         noteInstance.GetComponentInChildren<TMP_Text>().text = text;
+
+        receiptPrinter.NextReceipt();
 
         return true;
     }

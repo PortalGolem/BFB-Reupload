@@ -8,11 +8,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scenes/ThumbnailScene.unity
     guid: 944dfb97ab27042ccb4e1cd6534f2ea9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Scenes/AndrewTestScene.unity
     guid: 7030c9aeb361ec346b83fa6b08bb9c9e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Scenes/prototype scene I guess.unity
     guid: d99bf4b3a24d0a647b782640da8edb7c
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/TerraDemo.unity
+    guid: 6a3f3729bc033ae52a38c7d32f40fac9
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

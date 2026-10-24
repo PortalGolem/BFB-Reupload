@@ -7,7 +7,7 @@ public class FoodScript : MonoBehaviour
     public enum Effect
     {
         Cooked,
-        Waffle,
+        Waffled,
         Cut
     }
 
@@ -20,11 +20,12 @@ public class FoodScript : MonoBehaviour
     {
         effectIntensity[(int)effect] = set ? changeAmount : effectIntensity[(int)effect] + changeAmount;
 
-        switch (effect) {
+        switch (effect)
+        {
             case Effect.Cooked:
                 Cook(effectIntensity[(int)effect]);
                 break;
-            case Effect.Waffle:
+            case Effect.Waffled:
                 Waffle(effectIntensity[(int)effect]);
                 break;
             case Effect.Cut:
@@ -42,12 +43,12 @@ public class FoodScript : MonoBehaviour
 
     public virtual void Waffle(float intensity)
     {
-        
+
     }
 
     public virtual void Cut(float intensity)
     {
-        
+
     }
 }
 

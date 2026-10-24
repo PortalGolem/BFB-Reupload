@@ -23,6 +23,20 @@ public class DialogueManagerScript : MonoBehaviour
     Subtitles currentSubtitles;
     float subtitleTimer;
 
+    public static DialogueManagerScript instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     void Start()
     {
         currentSequence = initialSequence;

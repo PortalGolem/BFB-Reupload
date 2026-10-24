@@ -1,8 +1,7 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using Unity.VisualScripting;
 using System.Collections.Generic;
-using System.Data;
 
 public class TilePlacerScript : MonoBehaviour
 {
@@ -37,3 +36,4 @@ public class TilePlacerScript : MonoBehaviour
     }
 }
 
+#endif

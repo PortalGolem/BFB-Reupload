@@ -28,7 +28,6 @@ public class NoteDisplay : MonoBehaviour
     void Start()
     {
         currentAnimator = gameObject.GetComponent<Animator>();
-        DisplayNote(note);
     }
 
     public RectTransform DisplayNote(RectTransform note)
