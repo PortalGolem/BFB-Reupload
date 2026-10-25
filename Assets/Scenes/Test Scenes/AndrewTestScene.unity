@@ -9603,6 +9603,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 947624385}
     - target: {fileID: 8680614612704667880, guid: c92646cff09ffa6ae92263daf50e8d83, type: 3}
+      propertyPath: initialSequence
+      value: 
+      objectReference: {fileID: 11400000, guid: dba44d724c4b203c28cb69470ff73839, type: 2}
+    - target: {fileID: 8680614612704667880, guid: c92646cff09ffa6ae92263daf50e8d83, type: 3}
       propertyPath: subtitleDisplay
       value: 
       objectReference: {fileID: 326946932}

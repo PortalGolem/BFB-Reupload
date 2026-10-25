@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af369af8cfea42fedb60be64deeec18c, type: 3}
   m_Name: Fries
   m_EditorClassIdentifier: Assembly-CSharp::MealData
+  name: Fries
   foods: 00000000
   effects:
   - effects:

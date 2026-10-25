@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MealData", menuName = "Scriptable Objects/MealData")]
 public class MealData : ScriptableObject
 {
+    public string name = "";
     public List<FoodType> foods;
     public List<EffectList> effects;
 }
@@ -41,5 +42,10 @@ public class EffectList : ISerializationCallbackReceiver
     {
         get { return effects[key]; }
         set { effects[key] = value; }
+    }
+
+    public int Count()
+    {
+        return effectEnum.Count;
     }
 }

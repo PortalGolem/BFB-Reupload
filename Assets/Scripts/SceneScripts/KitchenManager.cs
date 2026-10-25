@@ -23,9 +23,10 @@ public class KitchenManager : MonoBehaviour
     //and swapped out if we want multiple cooking sessions in a single day
     [SerializeField] List<MealData> possibleMealsToday;
     [SerializeField] MealData firstMealToday;
-    [SerializeField] int quota;
+    [SerializeField] int quotaAmmount;
     [SerializeField] int possibleStrikes;
     [SerializeField] int numberOfOrders;
+    [SerializeField] int scoreThreshold;
 
     private float kitchenTime;
     private EventSequence eventSequence;
@@ -38,6 +39,7 @@ public class KitchenManager : MonoBehaviour
     private bool isKitchenTimerTimeUpCalled;
     private int strikesGiven;
     private int currentOrder;
+    private int quota;
     private List<MealData> chosenMeals = new List<MealData>();
 
     void Start()
@@ -128,7 +130,7 @@ public class KitchenManager : MonoBehaviour
             DialogueManagerScript.instance.AddEventToQueue(eventSequence, SequencePriority);
         }
 
-        // print first order
+        // print first orders
         for (int i = 0; i < numberOfOrders; i++)
         {
             receiptPrinter.printReceipt(generateOrderReceipt());
@@ -155,17 +157,33 @@ public class KitchenManager : MonoBehaviour
     public void ProcessBurger(int score)
     {
         // print new order
+        if (currentOrder < chosenMeals.Count)
+        {
+            receiptPrinter.printReceipt(generateOrderReceipt());
+        }
 
-        // run test algorithm on existing orders for submission
-        // take best score.
-        // if its above the threshold play success effects
-        // add to quota
-        // otherwise add a strike
+        //checkResult
+        if (score > scoreThreshold)
+        {
+            //stuff that runs when quota is added
+            quota++;
 
-        // if strikes are at limit kill player
+            if (quota > quotaAmmount)
+            {
+                endKitchen();
+            }
+        }
+        else
+        {
+            //stuff that happens when player makes a mistake
+            strikesGiven++;
+            //monster anger animation
 
-        // if quota is met
-        endKitchen();
+            if (strikesGiven > possibleStrikes)
+            {
+                killPlayer();
+            }
+        }
     }
 
     // After the cook cycle
@@ -173,8 +191,13 @@ public class KitchenManager : MonoBehaviour
     public void timeIsUp()
     {
         // display score
-        // kill player if they did not meet quota.
-        endKitchen();
+        // kill player
+        killPlayer();
+    }
+
+    void killPlayer()
+    {
+
     }
 
     void endKitchen()
@@ -204,10 +227,26 @@ public class KitchenManager : MonoBehaviour
 
         //Header
         text += "Monster Burger\n";
+        text += chosenMeals[currentOrder].name + "\n";
 
         for (int i = 0; i < chosenMeals[currentOrder].foods.Count; i++)
         {
             text += " " + chosenMeals[currentOrder].foods[i].ToString() + "\n";
+            for (int n = 0; n < chosenMeals[currentOrder].effects[i].Count() + 1; n++)
+            {
+                float intensity = chosenMeals[currentOrder].effects[i][n];
+                if (intensity > 0)
+                {
+                    if (intensity == 1)
+                    {
+                        text += "  " + ((FoodScript.Effect)n).ToString() + "\n";
+                    }
+                    else
+                    {
+                        text += "  " + ((FoodScript.Effect)n).ToString() + " " + intensity + "\n";
+                    }
+                }
+            }
         }
 
         currentOrder++;
