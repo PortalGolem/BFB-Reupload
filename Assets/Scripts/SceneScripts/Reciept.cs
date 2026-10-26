@@ -9,17 +9,23 @@ public class Reciept : Interactable
 
     [SerializeField] Vector3 NoteDistance;
     [SerializeField] Vector3 NoteStartPosition;
+    [SerializeField] Vector3 NoteHangingPosition;
     [SerializeField] Quaternion HangingRotation;
     public RectTransform note;
     public ReceiptPrinterScript receiptPrinter;
     public string text;
+
+    void Start()
+    {
+        transform.position = NoteStartPosition;
+    }
 
     public override bool Interact()
     {
         if (!hasInteracted)
         {
             hasInteracted = true;
-            transform.SetPositionAndRotation(NoteStartPosition + NoteDistance * NotePosition, HangingRotation);
+            transform.SetPositionAndRotation(NoteHangingPosition + NoteDistance * NotePosition, HangingRotation);
             NotePosition++;
         }
 

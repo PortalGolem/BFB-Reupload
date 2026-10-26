@@ -290,6 +290,7 @@ MonoBehaviour:
   musicObjects:
   - {fileID: 11400000, guid: af66b09c75a8bba07b9d13b2d42d8928, type: 2}
   - {fileID: 11400000, guid: 2db94cfafc1f89f68bc828598db409ee, type: 2}
+  - {fileID: 11400000, guid: 4907bfa5d302956e59357db93cbc4dca, type: 2}
   defaultFadeTime: 1
   AudioSources:
   - {fileID: 215133835}
@@ -322,7 +323,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -419,7 +420,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

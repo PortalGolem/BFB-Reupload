@@ -40,7 +40,7 @@ public class MoveAlongPath : MonoBehaviour
             if (distance > distanceToTarget)
             {
                 transform.position = targetPosition;
-                modelTransform.rotation = Quaternion.LookRotation(modelTransform.position - lastPoint, transform.up);
+                modelTransform.rotation = Quaternion.LookRotation(modelTransform.position - lastPoint + transform.forward * .001f, transform.up);
                 lastPoint = modelTransform.position;
                 float modelDistance = Vector3.Distance(modelTransform.position, transform.position);
                 modelTransform.position += (transform.position - modelTransform.position).normalized * math.min(Time.deltaTime * modelMoveSpeed, modelDistance);
@@ -53,7 +53,7 @@ public class MoveAlongPath : MonoBehaviour
             else
             {
                 transform.position = transform.position + (distance * (targetPosition - transform.position).normalized);
-                modelTransform.rotation = Quaternion.LookRotation(modelTransform.position - lastPoint, transform.up);
+                modelTransform.rotation = Quaternion.LookRotation(modelTransform.position - lastPoint + transform.forward * .0001f, transform.up);
                 lastPoint = modelTransform.position;
                 float modelDistance = Vector3.Distance(modelTransform.position, transform.position);
                 modelTransform.position += (transform.position - modelTransform.position).normalized * math.min(Time.deltaTime * modelMoveSpeed, modelDistance);
@@ -76,7 +76,7 @@ public class MoveAlongPath : MonoBehaviour
             else
             {
                 transform.position = transform.position + (distance * (hallTraverserScript.pathScript.points[path[currentPoint]].transform.position - transform.position).normalized);
-                modelTransform.rotation = Quaternion.LookRotation(modelTransform.position - lastPoint, transform.up);
+                modelTransform.rotation = Quaternion.LookRotation(modelTransform.position - lastPoint + transform.forward * .0001f, transform.up);
                 lastPoint = modelTransform.position;
                 float modelDistance = Vector3.Distance(modelTransform.position, transform.position);
                 modelTransform.position += (transform.position - modelTransform.position).normalized * math.min(Time.deltaTime * modelMoveSpeed, modelDistance);

@@ -25,8 +25,9 @@ public class KitchenManager : MonoBehaviour
     [SerializeField] MealData firstMealToday;
     [SerializeField] int quotaAmmount;
     [SerializeField] int possibleStrikes;
-    [SerializeField] int numberOfOrders;
+    [SerializeField] int numberOfContiguousOrders;
     [SerializeField] int scoreThreshold;
+    [SerializeField] TMP_Text winText;
 
     private float kitchenTime;
     private EventSequence eventSequence;
@@ -36,15 +37,15 @@ public class KitchenManager : MonoBehaviour
 
 
     private float kitchenTimer;
-    private bool isKitchenTimerTimeUpCalled;
+    private bool isKitchenTimerTimeUpCalled = true;
     private int strikesGiven;
     private int currentOrder;
     private int quota;
+    private bool youWin = false;
     private List<MealData> chosenMeals = new List<MealData>();
 
     void Start()
     {
-        startCookingTime(30, testEventSequence);
     }
 
     void Update()
@@ -61,6 +62,11 @@ public class KitchenManager : MonoBehaviour
             timeIsUp();
             isKitchenTimerTimeUpCalled = true;
         }
+    }
+
+    public bool startCookingTime(float timeToCook)
+    {
+        return startCookingTime(timeToCook, testEventSequence);
     }
 
     public bool startCookingTime(float timeToCook, EventSequence cookingStartEvents, int startEventPriority = 0, bool startEventOverride = false)
@@ -131,8 +137,9 @@ public class KitchenManager : MonoBehaviour
         }
 
         // print first orders
-        for (int i = 0; i < numberOfOrders; i++)
+        for (int i = 0; i < numberOfContiguousOrders; i++)
         {
+            foodRatingScript.foodToBeServed.Add(chosenMeals[currentOrder]);
             receiptPrinter.printReceipt(generateOrderReceipt());
         }
         return success;
@@ -159,6 +166,7 @@ public class KitchenManager : MonoBehaviour
         // print new order
         if (currentOrder < chosenMeals.Count)
         {
+            foodRatingScript.foodToBeServed.Add(chosenMeals[currentOrder]);
             receiptPrinter.printReceipt(generateOrderReceipt());
         }
 
@@ -168,7 +176,7 @@ public class KitchenManager : MonoBehaviour
             //stuff that runs when quota is added
             quota++;
 
-            if (quota > quotaAmmount)
+            if (quota >= quotaAmmount)
             {
                 endKitchen();
             }
@@ -190,19 +198,29 @@ public class KitchenManager : MonoBehaviour
 
     public void timeIsUp()
     {
-        // display score
-        // kill player
-        killPlayer();
+        if (!youWin)
+        {
+            // display score
+            kitchenTimer = 0;
+            // kill player
+            killPlayer();
+        }
     }
 
     void killPlayer()
     {
-
+        Debug.Log("TryKillPlayer");
+        FindFirstObjectByType<DeathScript>().killPlayer();
     }
 
     void endKitchen()
     {
         // play any win effects (this could go to the event player)
+        //freeze the clock
+        kitchenTimer = 0;
+        print("You Win!");
+        winText.text = "You Win!";
+        youWin = true;
         // music transition
         // monster leave animation
 

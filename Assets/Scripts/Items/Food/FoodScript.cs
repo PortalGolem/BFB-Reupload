@@ -38,7 +38,6 @@ public class FoodScript : MonoBehaviour
 
     public virtual void Cook(float intensity)
     {
-        Debug.Log(intensity);
     }
 
     public virtual void Waffle(float intensity)

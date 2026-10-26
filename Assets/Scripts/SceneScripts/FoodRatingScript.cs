@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FoodRatingScript : MonoBehaviour
@@ -9,7 +10,7 @@ public class FoodRatingScript : MonoBehaviour
     public int totalScore;
     [SerializeField] AnimationCurve AccuracyCurve;
     [SerializeField] KitchenManager kitchenManager;
-    public List<MealData> foodToBeServed = new List<MealData>();
+    [DoNotSerialize] public List<MealData> foodToBeServed = new List<MealData>();
 
     public int evaluateScore(PlateScript plate)
     {
